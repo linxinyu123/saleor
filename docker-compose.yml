@@ -1,0 +1,32 @@
+version: "3.4"
+
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      DEBUG: "True"
+      ALLOWED_HOSTS: "*"
+      DATABASE_URL: postgres://saleor:saleor@db:5432/saleor
+      REDIS_URL: redis://redis:6379/0
+    depends_on:
+      - db
+      - redis
+
+  db:
+    image: postgres:14
+    restart: always
+    environment:
+      POSTGRES_USER: saleor
+      POSTGRES_PASSWORD: saleor
+      POSTGRES_DB: saleor
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:6
+    restart: always
+
+volumes:
+  postgres_data:
