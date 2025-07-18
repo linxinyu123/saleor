@@ -1,0 +1,25 @@
+{
+  "name": "saleor",
+  "version": "3.21.9",
+  "engines": {
+    "node": ">=16 <17",
+    "npm": ">=7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/saleor/saleor.git"
+  },
+  "author": "Saleor Commerce",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/saleor/saleor/issues"
+  },
+  "homepage": "http://saleor.io/",
+  "devDependencies": {
+    "@release-it/bumper": "^4.0.0",
+    "release-it": "^15.6.0"
+  },
+  "scripts": {
+    "release": "release-it"
+  }
+}
