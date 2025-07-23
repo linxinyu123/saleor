@@ -29,6 +29,19 @@ services:
   redis:
     image: redis:6
     restart: always
+  worker:
+    build: .
+    command: celery -A saleor worker -l info
+    depends_on:
+      - db
+      - redis
+    environment:
+      DEBUG: "True"
+      DATABASE_URL: postgres://saleor:saleor@db:5432/saleor
+      REDIS_URL: redis://redis:6379/0
+      ALLOWED_HOSTS: "*"
+    volumes:
+      - ./media:/app/media
 
 volumes:
   postgres_data:
