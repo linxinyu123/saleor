@@ -25,7 +25,8 @@ services:
       POSTGRES_DB: saleor
     volumes:
       - postgres_data:/var/lib/postgresql/data
-   worker:
+
+  worker:  # ✅ 正确缩进
     build: .
     command: celery -A saleor worker -l info
     depends_on:
@@ -34,9 +35,9 @@ services:
     environment:
       - DATABASE_URL=postgres://saleor:saleor@db:5432/saleor
       - REDIS_URL=redis://redis:6379/0
-      - SECRET_KEY=lin964388
+      - SECRET_KEY=your-secret-key
       - ALLOWED_HOSTS=*
-      
+
   redis:
     image: redis:6
     restart: always
